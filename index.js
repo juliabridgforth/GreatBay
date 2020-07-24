@@ -24,8 +24,25 @@ connection.connect(function(err) {
 });
 ​
 // function which prompts the user for what action they should take
+const question = [
+  {
+    type: "list",
+    message: "Do you want to Post or Bid on an auction?",
+    choices: ["Post", "Bid"],
+    name: "postOrBid"
+  }
+];
+
 function start() {
-​
+  inquirer.prompt(question)
+​ .then(answer => {
+  if (answer.postOrBid === "Post") {
+    postAuction();
+  } else
+  if (answer.postOrBid === "Bid") {
+    bidAuction();
+  }
+});
 }
 ​
 // function to handle posting new items up for auction
